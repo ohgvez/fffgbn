@@ -7,7 +7,7 @@ on:
 
 jobs:
   check-flights:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 30
 
     steps:
@@ -19,22 +19,10 @@ jobs:
         with:
           python-version: '3.11'
 
-     - name: Install dependencies
+   - name: Install dependencies
         run: |
           sudo apt-get update
-          # Questo trucco crea un finto pacchetto per ingannare i software vecchi
-          sudo apt-get install -y equivs
-          echo "Section: misc" > libasound2-dummy
-          echo "Priority: optional" >> libasound2-dummy
-          echo "Package: libasound2" >> libasound2-dummy
-          echo "Architecture: all" >> libasound2-dummy
-          echo "Provides: libasound2" >> libasound2-dummy
-          echo "Description: dummy package for libasound2" >> libasound2-dummy
-          equivs-build libasound2-dummy
-          sudo dpkg -i libasound2-dummy*.deb
-          
-          # Ora installiamo il resto in sicurezza
-          sudo apt-get install -y libasound2t64 libgbm1 libnss3 libxss1
+          sudo apt-get install -y libasound2 libgbm1 libnss3 libxss1
           pip install -r requirements.txt
           playwright install chromium
           playwright install-deps chromium
