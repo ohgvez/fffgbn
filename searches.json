@@ -1,0 +1,12 @@
+[
+  {
+    "origins": ["MXP", "LIN", "BGY"],
+    "destination": "ANYWHERE",
+    "trip_type": "roundtrip",
+    "months": [6, 7, 8],
+    "min_nights": 3,
+    "max_nights": 3,
+    "max_price_eur": 50,
+    "passengers": 1
+  }
+]
